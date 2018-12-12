@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,6 +13,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  loginHandler() async {
+    FirebaseUser user = await widget.auth.signIn();
+    print(user);
+    widget.onSignedIn();
+  }
+
+
   @override
   Widget build(BuildContext context ) {
     return new Scaffold(
@@ -26,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.blue,
                 textColor: Colors.white,
                 onPressed: () {
-                  widget.onSignedIn();
+                  loginHandler();
                 },
               )
             ],

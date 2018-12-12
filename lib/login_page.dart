@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'auth.dart';
 
-class LoginPage extends StatelessWidget {
-  login(context) {
-    
-  }
+class LoginPage extends StatefulWidget {
+  
+  LoginPage({this.auth, this.onSignedIn});
+  final BaseAuth auth;
+  final VoidCallback onSignedIn;
 
+  @override
+  State<StatefulWidget> createState() => new _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context ) {
     return new Scaffold(
@@ -19,7 +26,7 @@ class LoginPage extends StatelessWidget {
                 color: Colors.blue,
                 textColor: Colors.white,
                 onPressed: () {
-                  login(context);
+                  widget.onSignedIn();
                 },
               )
             ],
@@ -29,3 +36,4 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+

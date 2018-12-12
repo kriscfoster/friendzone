@@ -15,10 +15,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   loginHandler() async {
     FirebaseUser user = await widget.auth.signIn();
-    print(user);
-    widget.onSignedIn();
+    if (user.uid != null) {
+      widget.onSignedIn();
+    }
   }
-
 
   @override
   Widget build(BuildContext context ) {

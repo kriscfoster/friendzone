@@ -5,6 +5,7 @@ import 'dart:async';
 abstract class BaseAuth {
   Future<FirebaseUser> currentUser();
   Future<FirebaseUser> signIn();
+  Future<void> signOut();
 }
 
 
@@ -25,5 +26,10 @@ class Auth implements BaseAuth {
         await _fAuth.signInWithFacebook(accessToken: result.accessToken.token);
     //Token: ${accessToken.token}
     return user;
+  }
+
+  Future<void> signOut() {
+    final FirebaseAuth _fAuth = FirebaseAuth.instance;
+    return _fAuth.signOut();
   }
 }
